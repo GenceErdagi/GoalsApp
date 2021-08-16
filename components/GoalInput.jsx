@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Keyboard, StyleSheet, TextInput, View } from "react-native";
 
-const GoalInput = ({ setText, setGoals, goals, text }) => {
+const GoalInput = ({ setGoals, goals }) => {
+  const [text, setText] = useState("");
   return (
     <View style={styles.inputWrapper}>
       <TextInput
