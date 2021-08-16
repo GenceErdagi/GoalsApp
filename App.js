@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Button,
+  FlatList,
   Keyboard,
   StyleSheet,
   Text,
@@ -23,17 +24,23 @@ export default function App() {
         <Button
           title={"Add"}
           onPress={() => {
-            setGoals([...goals, text]);
+            setGoals([...goals, { id: Math.random().toString(), value: text }]);
             setText("");
             Keyboard.dismiss();
           }}
         />
       </View>
-      <View>
-        {goals.map((goal, i) => (
-          <Text key={i}>{goal}</Text>
-        ))}
-      </View>
+      <FlatList
+        data={goals}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => {
+          return (
+            <View style={styles.listItem}>
+              <Text>{itemData.item.value}</Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 }
@@ -52,5 +59,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 20,
     paddingVertical: 10,
+  },
+  listItem: {
+    padding: 10,
+    marginVertical: 15,
+    backgroundColor: "#ccc",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
