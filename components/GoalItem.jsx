@@ -1,11 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 
-const GoalItem = ({ item }) => {
+const GoalItem = ({ item, onDelete }) => {
   return (
-    <View style={styles.listItem}>
-      <Text>{item.value}</Text>
-    </View>
+    <TouchableNativeFeedback onPress={onDelete}>
+      <View style={styles.listItem}>
+        <Text>{item.value}</Text>
+      </View>
+    </TouchableNativeFeedback>
   );
 };
 const styles = StyleSheet.create({
